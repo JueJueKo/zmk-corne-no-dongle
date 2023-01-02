@@ -11,11 +11,37 @@
 #define QUICK_TAP <200>
 
 
-&lt {
-  tapping-term-ms = <160>;
-  quick_tap_ms = QUICK_TAP;
-  flavor = "balanced";
+&mt {
+    flavor = "tap-preferred";
+    tapping-term-ms = <220>;
+    quick-tap-ms = <220>;              // repeat on tap-into-hold
+    hold-trigger-key-positions = <0>;  // tap on interrupt
 };
+
+/ {
+    macros {
+        tap_home: tap_home {
+            label = "ZM_zed_em_kay";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LSHFT>
+                , <&macro_tap &kp Z &kp M &kp K>
+                , <&macro_release &kp LSHFT>
+                ;
+        };
+    };
+};
+
+#define COMBO(name, keypress, keypos) \
+combo_##name {                        \
+	timeout-ms = <30>;                \
+	bindings = <keypress>;            \
+	key-positions = <keypos>;         \
+};
+
+
+
 
 / {
         keymap {
@@ -43,7 +69,7 @@
                         bindings = <
    &kp ESC    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp DEL
     &kp CAPS   &trans      &trans       &trans       &trans       &trans         &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
-   &kp LSHFT &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3  &bt BT_SEL 4   &lt HOME LA(LEFT)   &kp PG_DN   &kp PG_UP &kp END    &trans &bt BT_CLR
+   &kp LSHFT &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3  &bt BT_SEL 4   &mt HOME LA(LEFT)   &kp PG_DN   &kp PG_UP &kp END    &trans &bt BT_CLR
                           	        &kp LGUI     &trans       &kp RET      &kp SPACE  &trans   &kp RALT
                         >;
                 };
