@@ -18,17 +18,20 @@
     hold-trigger-key-positions = <0>;  // tap on interrupt
 };
 
+#define MACRO(name, keys)             \
+name: name##_macro {                  \
+	label = #name;                    \
+	compatible = "zmk,behavior-macro";\
+	#binding-cells = <0>;             \
+	tap-ms = <1>;                     \
+	wait-ms = <1>;                    \
+	bindings = <keys>;                \
+};
+
 / {
-    macros {
-        burst_down: burst_down {
-            label = "Burst_comb";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&macro_tap &kp DOWN &kp DOWN &kp DOWN &kp DOWN>
-                ;
-        };
-    };
+	macros {
+		MACRO(burst_down,  &kp DOWN &kp DOWN &kp DOWN &kp DOWN)
+	};
 };
 
 #define COMBO(name, keypress, keypos) \
