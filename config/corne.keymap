@@ -19,6 +19,12 @@
     hold-trigger-key-positions = <0>;  // tap on interrupt
 };
 
+&lt {
+	flavor = "hold-preferred";
+	tapping-term-ms = <210>;
+	quick-tap-ms = <150>;
+};
+
 #define MACRO(name, keys)             \
 name: name##_macro {                  \
 	label = #name;                    \
@@ -50,42 +56,55 @@ combo_##name {                        \
 
                 default_layer {
 // -----------------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
-// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-//                    | GUI | LWR | ENT |   | SPC | RSE  | ALT |
+// |  TAB |  Q  |  W  |  E  |  R  |   T   |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
+// | CTRL |  A  |  S  |  D  |  F  |   G   |   |  H  |  J   |  K  |  L  |  ;  |  '   |
+// | SHFT |  Z  |  X  |  C  |  V  |   B   |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
+//                    | GUI | LWR |ENT/CHR|   | SPC | RSE  | ALT |
                         bindings = <
    &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
    &kp LCTRL &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
    &kp LSHFT &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp ESC
-                  &kp LGUI &mo 1 &kp RET   &kp SPACE &mo 2 &kp RALT
+                  &kp LGUI &mo 1 &lt 3 RET   &kp SPACE &mo 2 &kp RALT
                         >;
                 };
                 lower_layer {
 // -----------------------------------------------------------------------------------------
-// |  ESC |  1  |  2  |  3  |  4  |  5  |   |  6        |  7  |  8  |  9  |  0  | DEL |
-// | CAPS |     |     |     |     |     |   | LFT       | DWN |  UP | RGT |     |     |
-// | SHFT | BT1 | BT2 | BT3 | BT4 |     |   |LA(LFT)/HOME| PGDN| PGUP| END |     |BTCLR|
-//                    | GUI |     | ENT |   | SPC       |     | ALT |
+// |  ESC |  1  |  2  |  3  |  4  |   5   |   |  6        |  7  |  8  |  9  |  0  | DEL |
+// | CAPS |     |     |     |     |       |   | LFT       | DWN |   UP | RGT |     |     |
+// | SHFT | BT1 | BT2 | BT3 | BT4 |  BT5  |   |LA(LFT)/HOME| 4*DN| 4*UP| END |     |BTCLR|
+//                    | GUI |     |ENT/CHR|   | SPC       |     | ALT |
                         bindings = <
    &kp ESC    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp DEL
     &kp CAPS   &trans      &trans       &trans       &trans       &trans         &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
    &kp LSHFT &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3  &bt BT_SEL 4   &mt HOME LA(LEFT)   &burst_down  &burst_up &mt END LA(RIGHT)   &trans &bt BT_CLR
-                          	        &kp LGUI     &trans       &kp RET      &kp SPACE  &trans   &kp RALT
+                          	        &kp LGUI     &trans       &lt 3 RET      &kp SPACE  &trans   &kp RALT
                         >;
                 };
 
                 raise_layer {
 // -----------------------------------------------------------------------------------------
-// |  F12 |  F1 |  F2 |  F3 |  F4 |  F5 |   |  F6 |  F7 |  F8 |  F9 | F10 | F11  |
-// | BTCLR|     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | GUI |     | ENT |   | SPC |     | ALT |
+// |  F12 |  F1 |  F2 |  F3 |  F4 |  F5  |   |  F6 |  F7 |  F8 |  F9 | F10 | F11  |
+// | BTCLR|     |     |     |     |      |   |  -  |  =  |  [  |  ]  |  \  |  `   |
+// | SHFT |     |     |     |     |      |   |  _  |  +  |  {  |  }  | "|" |  ~   |
+//                    | GUI |     |ENT/CHR|   | SPC |     | ALT |
                         bindings = <
    &kp F12  &kp F1 &kp F2 &kp F3 &kp F4 &kp F5   &kp F6 &kp F7  &kp F8 &kp F9 &kp F10 &kp F11
   &bt BT_CLR &trans &trans &trans &trans &trans      &kp MINUS &kp EQUAL &kp LBKT        &kp RBKT &kp BSLH &kp GRAVE
    &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC        &kp RBRC &kp PIPE &kp TILDE
-                    	     &kp LGUI &trans   &kp RET   &kp SPACE   &trans    &kp RALT
+                    	     &kp LGUI &trans   &lt 3 RET   &kp SPACE   &trans    &kp RALT
+                        >;
+                };
+                character_layer {
+// -----------------------------------------------------------------------------------------
+// |  ESC |  !  |  @  |  #  |  $  |  %  |   |  ^        |  &  |  *   |  (  |  )  | DEL |
+// | CAPS |     |     |     |     |     |   | LFT       | DWN |   UP | RGT |     |     |
+// | SHFT | BT1 | BT2 | BT3 | BT4 |     |   |LA(LFT)/HOME| 4*DN| 4*UP| END |     |BTCLR|
+//                    | GUI |     | ENT |   | SPC       |     | ALT |
+                        bindings = <
+   &kp ESC    &kp LS(N1)   &kp LS(N2)   &kp LS(N3)   &kp LS(N4)   &kp LS(N5)      &kp LS(N6)   &kp LS(N7)   &kp LS(N8) &kp LS(N9)    &kp LS(N0) &kp DEL
+    &kp CAPS   &trans      &trans       &trans       &trans       &trans         &kp LEFT      &kp DOWN     &kp UP      &kp RIGHT    &trans     &trans
+   &kp LSHFT   &trans      &trans       &trans       &trans       &trans   &mt HOME LA(LEFT)   &burst_down  &burst_up &mt END LA(RIGHT)   &trans &bt BT_CLR
+                          	        &kp LGUI     &trans       &kp RET      &kp SPACE  &trans   &kp RALT
                         >;
                 };
         };
