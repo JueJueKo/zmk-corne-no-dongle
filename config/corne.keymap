@@ -102,8 +102,8 @@ combo_##name {                        \
 //                    | GUI |     | ENT |   | SPC       |     | ALT |
                         bindings = <
    &kp ESC    &kp LS(N1)   &kp LS(N2)   &kp LS(N3)   &kp LS(N4)   &kp LS(N5)      &kp LS(N6)   &kp LS(N7)   &kp LS(N8)  &kp LS(N9)    &kp LS(N0) &kp DEL
-    &kp CAPS   &trans      &trans       &trans       &trans       &trans         &kp LS(LEFT)  &kp LS(DOWN)  &kp LS(UP) &kp LS(RIGHT) &trans     &trans
-   &kp LSHFT   &trans      &trans       &trans       &trans       &trans   &mt LS(HOME） LS(LA(LEFT))   &kp PG_DN  &kp PG_UP &mt LS(END) LS(LA(RIGHT))   &trans &trans
+    &kp CAPS   &trans      &trans       &trans       &trans       &trans      &kp LS(LEFT)  &kp LS(DOWN)  &kp LS(UP) &kp LS(RIGHT) &trans     &trans
+   &kp LSHFT   &trans      &trans       &trans       &trans       &trans   &mt LS(HOME) LS(LA(LEFT))   &kp PG_DN  &kp PG_UP &mt LS(END) LS(LA(RIGHT))   &trans &trans
                           	        &kp LGUI     &trans       &kp RET      &kp SPACE  &trans   &kp RALT
                         >;
                 };
