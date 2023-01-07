@@ -59,7 +59,13 @@ combo_##name {                        \
 	bindings = <keypress>;            \
 	key-positions = <keypos>;         \
 };
-COMBO(set_steno,   &set_steno, 1 2 3 4)
+/ {
+	combos {
+		compatible = "zmk,combos";
+		COMBO(set_steno,   &set_steno, 1 2 3 4)
+	};
+};
+
 
 
 
