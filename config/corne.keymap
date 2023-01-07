@@ -37,7 +37,6 @@ name: name##_macro {                  \
 	macros {
 		MACRO(burst_down,  &kp DOWN &kp DOWN &kp DOWN &kp DOWN)
 		MACRO(burst_up,  &kp UP &kp UP &kp UP &kp UP)
-		MACRO(set_steno, &kp LG(DOT) &tog 4)
 	};
 };
 
@@ -58,7 +57,7 @@ combo_##name {                        \
 / {
 	combos {
 		compatible = "zmk,combos";
-		COMBO(set_steno,   &set_steno, 1 2 3 4)
+		COMBO(set_steno,   &tog 4, 3 4)
 	};
 };
 
@@ -127,12 +126,12 @@ combo_##name {                        \
 // |  TAB |  Q  |  W  |  E  |  R  |   T   |   |  Y  |  U   |  I  |  O  |  P  |  [   |
 // | CTRL |  A  |  S  |  D  |  F  |   G   |   |  H  |  J   |  K  |  L  |  ;  |  '   |
 // | SHFT |  Z  |  X  |  C  |  V  |   B   |   | LFT | DWN  |  UP | RGT |  /  | ESC  |
-//                    |  C  |  V  |   #   |   |  #  |  N   |  M  |
+//                    |  C  |  V  |  RET  |   |  #  |  N   |  M  |
                         bindings = <
    &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp LBKT 
    &kp LCTRL &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
    &kp LSHFT &kp Z &kp X &kp C &kp V &kp B   &kp LEFT &kp DOWN  &kp UP &kp RIGHT &kp FSLH &kp ESC
-                  &kp C &kp V &kp N1         &kp N2 &kp N &kp M
+                  &kp C &kp V &kp RET        &kp N2 &kp N &kp M
                         >;
                 };
         };
