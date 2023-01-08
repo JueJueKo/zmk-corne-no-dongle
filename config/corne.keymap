@@ -57,7 +57,7 @@ combo_##name {                        \
 / {
 	combos {
 		compatible = "zmk,combos";
-		COMBO(set_steno,   &tog 4, 3 4)
+		COMBO(set_steno,   &tog 4, 0 5)
 	};
 };
 
